@@ -1,0 +1,36 @@
+plugins {
+    id 'groovy'
+    id 'maven-publish'
+}
+
+dependencies {
+
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'com.github.bzumhagen:sct_2.12:0.11.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+}
+
+group 'com.github.rmohammed4'
+version '1.0-SNAPSHOT'
+
+publishing {
+    repositories {
+        maven {
+            url = uri("$buildDir/repo")
+        }
+    }
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
