@@ -4,7 +4,7 @@ jdk:
 before_install:
 - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then openssl aes-256-cbc -K $encrypted_9d41042a5a8d_key -iv $encrypted_9d41042a5a8d_iv -in secRing.gpg.enc -out secRing.gpg -d; fi'
 script:
-- ./gradlew clean build test
+- ./gradlew clean build test -x signArchives
 after_success:
 - 'if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ./gradlew clean assemble -x signArchives; fi'
 - 'if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ./gradlew signArchives; fi'
